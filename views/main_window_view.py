@@ -1,10 +1,10 @@
 from PyQt5.QtWidgets import QWidget, QMainWindow, QHBoxLayout, QMenuBar, QMenu, QAction
 
-
-class MainWindow(QMainWindow):
+class MainWindowView(QMainWindow):
     """Main Application Window Class"""
-    def __init__(self, title="Application"):
+    def __init__(self, controller, title="Application"):
         super().__init__()
+        self._controller = controller
         self.setWindowTitle(title)
         self.resize(900, 800)
         self.central_widget = None
@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
         self.open_action = QAction("&Open", self)
 
     def _connect_actions(self):
-        self.open_action.triggered.connect(self._open_file)
+        self.open_action.triggered.connect(self._controller.open_file)
 
     def _create_menu_bar(self):
         menu_bar = QMenuBar()

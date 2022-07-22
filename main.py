@@ -1,19 +1,20 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QTextEdit
-from gui.main_window import MainWindow
+from controllers.main_window_controller import MainWindowController
+
 
 def main():
     app = QApplication(sys.argv)
 
-    main_window = MainWindow("QuickTail")
+    main_controller = MainWindowController()
 
     children = [QTextEdit(), QTextEdit(), QTextEdit()]
 
-    main_window.setupUI()
+    main_controller.start()
     for i in children:
-        main_window.add_child(i)
+        main_controller.view.add_child(i)
 
-    main_window.show()
+    main_controller.start()
 
     sys.exit(app.exec())
 
